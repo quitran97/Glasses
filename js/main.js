@@ -25,13 +25,22 @@ const vglassesButton = document.querySelectorAll(".vglassButton")
 
 for (const vglassButton of vglassesButton) {
     vglassButton.addEventListener("click", (e) => {
-        const dataGlass = dataGlasses.find(dataGlass => dataGlass.id === e.target.getAttribute("key"))
-        glass.attributes.src.value = dataGlass.virtualImg
-        glass.attributes.alt.value = dataGlass.name
+        const dataGlass = dataGlasses.find(dataGlass => dataGlass.id === e.target.getAttribute("key"));
+
+        // Show glass
+        model.innerHTML = `<img src=${dataGlass.virtualImg} alt=${dataGlass.name} class='vglasses__model__img' id>`;
+
+        // Show info
         glassInfo.innerHTML = `
         <div>
-        <h3>${dataGlass.name} - ${dataGlass.brand} (${dataGlass.color})</h3>
+        <h3 style='font-size: 14px'>${dataGlass.name} - ${dataGlass.brand} (${dataGlass.color})</h3>
+        <p>
+        <span style='background-color: red; padding: 4px; border-radius: 8px; font-size: 10px'>${dataGlass.price}$</span>
+        <span style='font-size: 10px; color: green'>Stoking</span>
+        </p>
+        <p style='font-size: 12px; color: white'>${dataGlass.description}</p>
         </div>`
+        glassInfo.style.display = "block"
     })
 }
 
